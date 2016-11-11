@@ -10,7 +10,7 @@ class Mailer extends BaseMailer
     /**
      * Create a new message instance.
      *
-     * @return \Illuminate\Mail\Message
+     * @return \Timfeid\LaravelSendgrid\Message
      */
     protected function createMessage()
     {
@@ -29,13 +29,16 @@ class Mailer extends BaseMailer
     /**
      * Send a new message using a view.
      *
-     * @param string|array    $view
-     * @param array           $data
-     * @param \Closure|string $callback
+     * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
+     * @return void
      */
-    public function send($view, array $data = [], $callback = NULL)
+    public function send($view, array $data = [], $callback = null)
     {
-        $this->forceReconnection();
+        if ($view instanceof MailableContract) {
+            return $view->send($this);
+        }
 
         // First we need to parse the view, which could either be a string or an array
         // containing both an HTML and plain text versions of the view which should
@@ -56,9 +59,8 @@ class Mailer extends BaseMailer
         }
 
         $message->setSendGridHeaders();
-
         $message = $message->getSwiftMessage();
 
-        return $this->sendSwiftMessage($message);
+        $this->sendSwiftMessage($message);
     }
 }
