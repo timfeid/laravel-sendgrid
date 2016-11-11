@@ -17,5 +17,6 @@
         "psr-4": {
             "TimFeid\\LaravelSendgrid\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
