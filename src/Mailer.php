@@ -33,7 +33,7 @@ class Mailer extends BaseMailer
      * @param array           $data
      * @param \Closure|string $callback
      */
-    public function send($view, array $data, $callback)
+    public function send($view, array $data, $callback = NULL)
     {
         $this->forceReconnection();
 
