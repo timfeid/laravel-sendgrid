@@ -2,6 +2,7 @@
 
 namespace TimFeid\LaravelSendgrid\Providers;
 
+use TimFeid\LaravelSendgrid\Mailer;
 use Illuminate\Mail\MailServiceProvider as BaseMailServiceProvider;
 
 class MailServiceProvider extends BaseMailServiceProvider
