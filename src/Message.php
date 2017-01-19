@@ -13,6 +13,29 @@ class Message extends BaseMessage
         $this->sendgrid_headers['category'] = $category;
     }
 
+    public function uniqueArugments($arguments)
+    {
+        if (is_array($arguments)) {
+            $arugments = (object) $arguments;
+        }
+
+        if (!is_object($arugments)) {
+            throw new InvalidArgumentException('Expecting an array or object');
+        }
+
+        $this->sendgrid_headers['unique_args'] = $arguments;
+    }
+
+    public function uniqueArgs($args)
+    {
+        return $this->uniqueArugments($args);
+    }
+
+    public function addSendgridHeader($header)
+    {
+        $this->sendgrid_headers = array_merge($this->sendgrid_headers, $header);
+    }
+
     public function setSendGridHeaders()
     {
         if (!empty($this->sendgrid_headers)) {
