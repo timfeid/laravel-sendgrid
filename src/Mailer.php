@@ -2,8 +2,9 @@
 
 namespace TimFeid\LaravelSendgrid;
 
-use Illuminate\Mail\Mailer as BaseMailer;
 use Swift_Message;
+use Illuminate\Mail\Mailer as BaseMailer;
+use Illuminate\Contracts\Mail\Mailable as MailableContract;
 
 class Mailer extends BaseMailer
 {
