@@ -27,14 +27,6 @@ class Mailer extends BaseMailer
         return $message;
     }
 
-    /**
-     * Send a new message using a view.
-     *
-     * @param  string|array  $view
-     * @param  array  $data
-     * @param  \Closure|string  $callback
-     * @return void
-     */
     public function send($view, array $data = [], $callback = null)
     {
         if ($view instanceof MailableContract) {
@@ -53,15 +45,16 @@ class Mailer extends BaseMailer
         // to creating view based emails that are able to receive arrays of data.
         $this->addContent($message, $view, $plain, $raw, $data);
 
-        $this->callMessageBuilder($callback, $message);
+        call_user_func($callback, $message);
 
+        // If a global "to" address has been set, we will set that address on the mail
+        // message. This is primarily useful during local development in which each
+        // message should be delivered into a single mail address for inspection.
         if (isset($this->to['address'])) {
-            $message->to($this->to['address'], $this->to['name'], true);
+            $this->setGlobalTo($message);
         }
 
         $message->setSendGridHeaders();
-        $message = $message->getSwiftMessage();
-
-        $this->sendSwiftMessage($message);
+        $this->sendSwiftMessage($message->getSwiftMessage());
     }
 }

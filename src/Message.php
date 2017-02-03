@@ -38,10 +38,8 @@ class Message extends BaseMessage
 
     public function setSendGridHeaders()
     {
-        if (!empty($this->sendgrid_headers)) {
-            $header = $this->asString($this->sendgrid_headers);
-            $this->getHeaders()->addTextHeader('X-SMTPAPI', $header);
-        }
+        $header = $this->asString($this->sendgrid_headers);
+        $this->getHeaders()->addTextHeader('X-SMTPAPI', $header);
     }
 
     protected function asJSON($data)
