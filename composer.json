@@ -2,8 +2,8 @@
     "name": "timfeid/laravel-sendgrid",
     "description": "Add sendgrid api methods to Laravel's Mail",
     "require": {
-        "swiftmailer/swiftmailer": "~5.1",
-        "illuminate/mail": "^5.3"
+        "swiftmailer/swiftmailer": "~6.0",
+        "illuminate/mail": "~5.5"
     },
     "license": "MIT",
     "authors": [
