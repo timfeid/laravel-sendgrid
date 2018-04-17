@@ -9,7 +9,7 @@
     // Remove or comment out:
     // Illuminate\Mail\MailServiceProvider::class,
     // Add
-    Timfeid\LaravelSendgrid\LaravelSendgridServiceProvider::class,
+    TimFeid\LaravelSendgrid\LaravelSendgridServiceProvider::class,
 ```
 
 ### `config/services.php`
